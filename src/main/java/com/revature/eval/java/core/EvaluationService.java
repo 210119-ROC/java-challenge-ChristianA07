@@ -3,9 +3,8 @@ package com.revature.eval.java.core;
 import java.util.List;
 import java.util.Map;
 
-public class EvaluationService {
-
-	/**
+public class EvaluationService 
+{	/**
 	 * 1.A Speed Converter - Convert to MilesPerHour
 	 * 
 	 * Write a method called toMilesPerHour that has 1 parameter of type double with
@@ -18,13 +17,17 @@ public class EvaluationService {
 	 * Otherwise if it is positive, calculate the value of miles per hour, round it
 	 * and return it. For conversion and rounding use Math.round().
 	 */
-	static class SpeedConverter {
+	static class SpeedConverter 
+	{
 
-		public static long toMilesPerHour(double kilometersPerHour) {
-			// TODO Write an implementation for this method declaration
-			return 0;
-		}
-
+		public static long toMilesPerHour(double kilometersPerHour) 
+		{
+			if (kilometersPerHour < 0)
+			{
+				return -1;
+			}
+			return Math.round(kilometersPerHour / 1.609);
+		} 
 		/**
 		 * 1.B Speed Converter - Print Conversion
 		 * 
@@ -40,9 +43,17 @@ public class EvaluationService {
 		 * If the parameter kilometersPerHour is < 0, then print the text "Invalid
 		 * Value"
 		 */
-		public static String printConversion(double kilometersPerHour) {
-			// TODO Write an implementation for this method declaration
-			return null;
+		public static String printConversion(double kilometersPerHour) 
+		{
+			if (kilometersPerHour < 0)
+			{
+				return "Invalid value";
+			}
+			else 
+			{
+				long milesPerHour = toMilesPerHour(kilometersPerHour);
+				return kilometersPerHour + "kn/h = " + milesPerHour + " mi/h";
+			}
 		}
 	}
 
@@ -60,15 +71,25 @@ public class EvaluationService {
 	 * XX represents the original value kiloBytes. YY represents the calculated
 	 * megabytes. ZZ represents the calculated remaining kilobytes.
 	 * 
-	 * For examples, when the parameter kiloBytes is 2500 it needs to print "2500 KB
+	 * For example, when the parameter kiloBytes is 2500 it needs to print "2500 KB
 	 * = 2 MB and 452 KB"
 	 * 
 	 * If the parameter kiloBytes is less than 0 then print the text "Invalid
 	 * Value".
 	 */
-	public String printMegaBytesAndKiloBytes(int XX) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public static String printMegaBytesAndKiloBytes(int kiloBytes)
+	{
+		if (kiloBytes < 0)
+		{
+			return "Invalid value";
+		}
+		else
+		{
+			int MBs = kiloBytes / 1024;
+			int KBs = kiloBytes % 1024;
+			
+			return kiloBytes + " KB = " + MBs + " MB and " + KBs + " KB";
+		}
 	}
 
 	/**
@@ -79,7 +100,7 @@ public class EvaluationService {
 	 * 
 	 * Write a method shouldWakeUp that has 2 parameters.
 	 * 
-	 * 1st parameter should be of type boolean and be named "barking". It represents
+	 * 1st parameter should be of type boolean and be named isBarking. It represents
 	 * if our dog is currently barking. 2nd parameter represents the hour of the day
 	 * and is of type int with the name hourOfDay and has a valid range of 0-23.
 	 * 
@@ -90,9 +111,30 @@ public class EvaluationService {
 	 * 
 	 * If the hourOfDay parameter is less than 0 or greater than 23, return false.
 	 */
-	public boolean shouldWakeUp(boolean isBarking, int hourOfDay) {
-		// TODO Write an implementation for this method declaration
-		return false;
+	public boolean shouldWakeUp(boolean isBarking, int hourOfDay) 
+	{
+		boolean wakeUp = false;
+		if (isBarking)
+		{
+			if (hourOfDay < 0 || hourOfDay > 23)
+			{
+				wakeUp = false;
+			}
+			else if (hourOfDay < 8 || hourOfDay > 22)
+			{
+				wakeUp = true;
+			}
+			else
+			{
+				wakeUp = false;
+			}
+		}
+		else
+		{
+			wakeUp = false;
+		}
+		
+		return wakeUp;
 	}
 
 	/**
